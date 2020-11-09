@@ -1,1 +1,0 @@
-cd /mnt/c/users/dvir/dev/c2020
