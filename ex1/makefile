@@ -32,6 +32,6 @@ main.o: main.c myMath.h
 	$(CC) $(FLAGS) -c main.c
 
 clean:
-	rm -f *.o *.a *.so
+	rm -f *.o *.a *.so maind mains
 
 .PHONY: clean all

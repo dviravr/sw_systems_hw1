@@ -2,3 +2,5 @@ path.txt
 *.o
 *.a
 *.so
+mains
+maind
