@@ -4,31 +4,37 @@ FLAGS= -Wall
 OBJECTS_LIB=power.o basicMath.o
 OBJECTS_MAIN=main.o
 
-all:
+all: libmyMath.so libmyMath.a mains maind 
 
-mymaths: main.o libmyMath.a
-	%(CC) $(FLAGS) -o mymaths libmyMath.a
+# mymaths: libmyMath.a $(OBJECTS_MAIN)
+# 	$(AR) -rcs libmyMath.a $(OBJECTS_LIB)
+# 	# %(CC) $(FLAGS) -o mymaths libmyMath.a
 
-mymathd: main.o
-	libmyMath.so
+# mymathd: $(OBJECTS_MAIN)
+# 	$(CC) $(FLAGS) -o $(OBJECTS_MAIN)
 
-libmyMath.a:
+mains: $(OBJECTS_MAIN) libmyMath.a
+	$(CC) $(FLAGS) -o mains $(OBJECTS_MAIN) libmyMath.a
+
+maind: $(OBJECTS_MAIN)
+	$(CC) $(FLAGS) -o maind $(OBJECTS_MAIN) ./libmyMath.so
+
+libmyMath.a: $(OBJECTS_LIB)
 	$(AR) -rcs libmyMath.a $(OBJECTS_LIB)
 
-libmyMath.so:
-
-
-mains: main.o libmyMath.a
-	$(CC) main.o -o mains
-
-maind: main.o libmyMath.so
-	$(CC) main.o -o maind
+libmyMath.so: $(OBJECTS_LIB) 
+	$(CC) -shared -o libmyMath.so $(OBJECTS_LIB)
 
 power.o: power.c myMath.h
-	$(CC) -c power.c
+	$(CC) $(FLAGS) -c power.c
 	
 basicMath.o: basicMath.c myMath.h
-	$(CC) -c basicMath.c
+	$(CC) $(FLAGS) -c basicMath.c
 
 main.o: main.c myMath.h
-	$(CC) -c main.c
+	$(CC) $(FLAGS) -c main.c
+
+clean:
+	rm -f *.o *.a *.so mymaths mymathd
+
+.PHONY: clean all
