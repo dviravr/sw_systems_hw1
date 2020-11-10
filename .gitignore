@@ -1,1 +1,4 @@
 path.txt
+*.o
+*.a
+*.so

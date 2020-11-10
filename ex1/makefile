@@ -6,13 +6,10 @@ OBJECTS_MAIN=main.o
 
 all: libmyMath.so libmyMath.a mains maind 
 
-# mymaths: libmyMath.a $(OBJECTS_MAIN)
-# 	$(AR) -rcs libmyMath.a $(OBJECTS_LIB)
-# 	# %(CC) $(FLAGS) -o mymaths libmyMath.a
+mymaths: libmyMath.a
 
-# mymathd: $(OBJECTS_MAIN)
-# 	$(CC) $(FLAGS) -o $(OBJECTS_MAIN)
-
+mymathd: libmyMath.so
+	
 mains: $(OBJECTS_MAIN) libmyMath.a
 	$(CC) $(FLAGS) -o mains $(OBJECTS_MAIN) libmyMath.a
 
@@ -35,6 +32,6 @@ main.o: main.c myMath.h
 	$(CC) $(FLAGS) -c main.c
 
 clean:
-	rm -f *.o *.a *.so mymaths mymathd
+	rm -f *.o *.a *.so
 
 .PHONY: clean all
