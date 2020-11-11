@@ -9,9 +9,9 @@ double Exponent(int x)
 double Power(double x, int y)
 {
     double res = 1;
-    boolean neg = false;
+    int neg = 0;
     if(y<0) {
-        neg = true;
+        neg = 1;
         y=-y;
     }
     while (y > 0)
